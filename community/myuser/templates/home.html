@@ -7,16 +7,17 @@
   </div>
 </div>
 <div class="row mt-5">
+<!-- session 을 통하여 로그인이 되어 있는지를 확인 -->
   {% if request.session.user %}
   <div class="col-12">
-    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/logout/'">로그아웃</button>
+    <button class="btn btn-primary btn-block" onclick="location.href='/myuser/logout/'">로그아웃</button>
   </div>
   {% else %}
   <div class="col-6">
-    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/login/'">로그인</button>
+    <button class="btn btn-primary btn-block" onclick="location.href='/myuser/login/'">로그인</button>
   </div>
   <div class="col-6">
-    <button class="btn btn-primary btn-block" onclick="location.href='/fcuser/register/'">회원가입</button>
+    <button class="btn btn-primary btn-block" onclick="location.href='/myuser/register/'">회원가입</button>
   </div>
   {% endif %}
 </div>
