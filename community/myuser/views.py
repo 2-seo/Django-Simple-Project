@@ -1,9 +1,61 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.hashers import make_password
-
+from django.contrib.auth.hashers import make_password, check_password
 from .models import Myuser
+from .forms import LoginForm
 
+def home(request):
+    return render(request, 'home.html')
+
+def login(request):
+    if request.method == 'POST':
+        # POST 일 경우 request 의 POST 데이터를 form 에 넣어줌
+        form = LoginForm(request.POST)
+
+        # form 에서 유효성 검사를 함 
+        if form.is_valid():
+            request.session['user'] = form.username
+            return redirect('/')
+    else:
+        # 아닐 경우에는 빈 폼 생
+        form = LoginForm()
+
+    return render(request, 'login.html', {'form': form})
+
+
+# Form 이용하기 전 method
+
+# def login(request):
+#
+#     res_date = {}
+#
+#     if request.method == 'GET':
+#         return render(request, 'login.html')
+#     else:
+#         if request.method == 'POST':
+#             username = request.POST.get('username')
+#             password = request.POST.get('password')
+#
+#             if username and password:
+#                 user = Myuser.objects.get(username=username)
+#                 if check_password(password, user.password):
+#                     # session
+#                     request.session['user'] = user.username
+#                     return redirect('/')
+#                 else:
+#                     res_date['error'] = '비밀번호를 확인하세요!'
+#             else:
+#                 res_date['error'] = '아이디와 패스워드를 입력하세요.'
+#
+#     return render(request, 'login.html', res_date)
+
+
+def logout(request):
+    # user 라는 session 이 있는지 Check
+    if request.session['user']:
+        # 있으면 delete
+        del request.session['user']
+    return redirect('/')
 
 def register(request):
     # mapping 한 url 로 사용자가 들어오면 GET 방식으로 들어오게 됨
