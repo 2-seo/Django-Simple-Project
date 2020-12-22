@@ -14,7 +14,7 @@ def login(request):
 
         # form 에서 유효성 검사를 함 
         if form.is_valid():
-            request.session['user'] = form.username
+            request.session['user'] = form.user_id
             return redirect('/')
     else:
         # 아닐 경우에는 빈 폼 생
@@ -54,7 +54,7 @@ def logout(request):
     # user 라는 session 이 있는지 Check
     if request.session['user']:
         # 있으면 delete
-        del request.session['user']
+        del(request.session['user'])
     return redirect('/')
 
 def register(request):

@@ -26,10 +26,15 @@ class LoginForm(forms.Form):
         password = cleand_data.get('password')
 
         if username and password:
-            user = Myuser.objects.get(username=username)
+            try:
+                user = Myuser.objects.get(username=username)
+            except Myuser.DoesNotExist:
+                self.add_error('username', '아이디가 없습니다.')
+                return
+
             if not check_password(password, user.password):
                 # password 가 일치하지 않으면 error 를 추가함
                 self.add_error('password', '비밀번호가 틀렸습니다.')
             else:
                 # 일치하면 user 객체에서 username 을 self.username 에 담음
-                self.username = user.username
+                self.user_id = user.id
