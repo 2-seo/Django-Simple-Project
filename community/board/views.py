@@ -60,10 +60,11 @@ def board_list(request):
     # order_by : 정렬
     # -id : id 를 내림 차순으로 가져오겠다. :: 최신순으로 보겠다.
     all_boards = Board.objects.all().order_by('-id')
-    page = int(request.GET.get('p', 1))
+    # page = int(request.GET.get('page', 1))
+    page = request.GET.get('page')
 
     # Paginator(전체 게시글, 몇 개씩 보여줄 것인지)
-    paginator = Paginator(all_boards, 1)
+    paginator = Paginator(all_boards, 5)
 
     boards = paginator.get_page(page)
 

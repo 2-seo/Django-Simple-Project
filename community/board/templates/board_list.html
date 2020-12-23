@@ -31,7 +31,7 @@
       <ul class="pagination justify-content-center">
         {% if boards.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?p={{ boards.previous_page_number }}">이전으로</a>
+          <a class="page-link" href="?page={{ boards.previous_page_number }}">이전으로</a>
         </li>
         {% else %}
         <li class="page-item disabled">
@@ -43,7 +43,7 @@
         </li>
         {% if boards.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?p={{ boards.next_page_number }}">다음으로</a>
+          <a class="page-link" href="?page={{ boards.next_page_number }}">다음으로</a>
         </li>
         {% else %}
         <li class="page-item disabled">
