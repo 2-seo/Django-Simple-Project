@@ -27,7 +27,7 @@ def login(request):
 
 # def login(request):
 #
-#     res_date = {}
+#     res_data = {}
 #
 #     if request.method == 'GET':
 #         return render(request, 'login.html')
@@ -43,11 +43,11 @@ def login(request):
 #                     request.session['user'] = user.username
 #                     return redirect('/')
 #                 else:
-#                     res_date['error'] = '비밀번호를 확인하세요!'
+#                     res_data['error'] = '비밀번호를 확인하세요!'
 #             else:
-#                 res_date['error'] = '아이디와 패스워드를 입력하세요.'
+#                 res_data['error'] = '아이디와 패스워드를 입력하세요.'
 #
-#     return render(request, 'login.html', res_date)
+#     return render(request, 'login.html', res_data)
 
 
 def logout(request):
